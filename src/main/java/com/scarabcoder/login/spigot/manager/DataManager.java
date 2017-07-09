@@ -1,0 +1,44 @@
+package com.scarabcoder.login.spigot.manager;
+
+import com.scarabcoder.login.MySQLManager;
+import com.scarabcoder.login.spigot.CachedPlayerData;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.UUID;
+
+/**
+ * Created by Anastasia on 7/8/17.
+ */
+public class DataManager {
+
+    private static HashMap<UUID, CachedPlayerData> pData = new HashMap<UUID, CachedPlayerData>();
+
+    public static CachedPlayerData getPlayerData(UUID id){
+        return pData.get(id);
+    }
+
+    public static void refreshCache(UUID id){
+        Connection c = MySQLManager.getConnection();
+
+        try {
+            PreparedStatement ps = c.prepareStatement("SELECT * FROM users WHERE uuid=?");
+            ps.setString(1, id.toString());
+
+            ResultSet st = ps.executeQuery();
+
+            if(st.next()){
+                CachedPlayerData data = new CachedPlayerData(id, st.getString("username"), st.getString("hashedPass"), st.getBoolean("premium"));
+                pData.put(id, data);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+}

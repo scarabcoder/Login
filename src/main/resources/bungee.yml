@@ -1,0 +1,4 @@
+name: LoginProxy
+version: ${project.version}
+main: com.scarabcoder.login.bungeecord.LoginBungeeCord
+author: Nicholas Harris (ScarabCoder)

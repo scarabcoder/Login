@@ -1,0 +1,9 @@
+name: LoginPlugin
+version: ${project.version}
+main: com.scarabcoder.login.spigot.LoginSpigot
+author: Nicholas Harris (ScarabCoder)
+commands:
+  register:
+    description: Register a password
+  login:
+    desciption: Login with a password
