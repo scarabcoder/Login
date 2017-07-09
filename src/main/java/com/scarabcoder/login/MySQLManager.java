@@ -7,7 +7,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Created by Anastasia on 7/8/17.
+ * MySQL manager for making connections to the database and used for both Spigot and Proxy plugins.
+ * Can also create tables, should be use for every plugin connecting to the database.
  */
 public class MySQLManager {
 

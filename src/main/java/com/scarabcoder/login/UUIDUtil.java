@@ -7,7 +7,10 @@ import org.bukkit.entity.Player;
 import java.util.UUID;
 
 /**
- * Created by Anastasia on 7/8/17.
+ * Not currently in use.
+ * Simple util to check if a player's UUID is an online or offline mode one.
+ * Will not work due to the fact UUIDs are changed for offline mode players.
+ * Use CachedPlayerData#isPremium for Spigot players instead.
  */
 public class UUIDUtil {
 

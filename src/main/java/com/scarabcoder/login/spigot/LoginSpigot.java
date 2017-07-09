@@ -16,7 +16,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.sql.SQLException;
 
 /**
- * Created by Anastasia on 7/8/17.
+ * Main plugin class
  */
 public class LoginSpigot extends JavaPlugin {
 
@@ -28,6 +28,10 @@ public class LoginSpigot extends JavaPlugin {
 
         this.getConfig().options().copyDefaults(true);
         this.saveDefaultConfig();
+
+        //
+        //    Get the MySQL connection data from the config
+        //
 
         String host = this.getConfig().getString("mysql.host");
         String port = this.getConfig().getString("mysql.port");
@@ -55,10 +59,8 @@ public class LoginSpigot extends JavaPlugin {
     }
 
     private void registerListeners(){
-        Bukkit.getPluginManager().registerEvents(new CommandListener(), this);
         Bukkit.getPluginManager().registerEvents(new LoginListener(), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerChatListener(), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerMoveListener(), this);
+        Bukkit.getPluginManager().registerEvents(new BlockListeners(), this);
 
     }
 
@@ -70,6 +72,11 @@ public class LoginSpigot extends JavaPlugin {
         return plugin;
     }
 
+
+    /**
+     * Send the login notification players get when they aren't logged in.
+     * @param p Player to be sent to
+     */
     public static void sendLoginNotification(Player p){
 
         CachedPlayerData d = DataManager.getPlayerData(p.getUniqueId());

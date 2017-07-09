@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 /**
- * Created by Anastasia on 7/8/17.
+ * Simple session data storage
  */
 public class LoginManager {
 

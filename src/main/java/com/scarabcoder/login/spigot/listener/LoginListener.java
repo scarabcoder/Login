@@ -14,7 +14,7 @@ import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 /**
- * Created by Anastasia on 7/8/17.
+ * Cache player data from the database and get the login session from the proxy plugin
  */
 public class LoginListener implements Listener {
 

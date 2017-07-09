@@ -15,11 +15,16 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * Created by Anastasia on 7/8/17.
+ * /register command for players
  */
 public class RegisterCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
+
+
+        //
+        //    Will set the password for a player. Only usable when one is not already set.
+        //
 
         if(sender instanceof Player){
             Player p = (Player) sender;

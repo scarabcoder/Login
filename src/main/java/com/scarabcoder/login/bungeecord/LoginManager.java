@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 /**
- * Created by Anastasia on 7/8/17.
+ * LoginManager, should only be used by BungeeCord proxy plugins!
  */
 public class LoginManager {
 
@@ -23,6 +23,10 @@ public class LoginManager {
 
     public boolean isLoggedIn(UUID id){
         return users.get(id);
+    }
+
+    public void removeEntry(UUID id){
+        users.remove(id);
     }
 
 
