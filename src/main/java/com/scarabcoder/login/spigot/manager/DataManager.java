@@ -1,7 +1,7 @@
 package com.scarabcoder.login.spigot.manager;
 
 import com.scarabcoder.login.MySQLManager;
-import com.scarabcoder.login.spigot.CachedPlayerData;
+import com.scarabcoder.login.CachedPlayerData;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

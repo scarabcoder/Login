@@ -2,18 +2,15 @@ package com.scarabcoder.login.spigot.command;
 
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
-import com.scarabcoder.login.spigot.CachedPlayerData;
+import com.scarabcoder.login.CachedPlayerData;
 import com.scarabcoder.login.spigot.LoginSpigot;
 import com.scarabcoder.login.spigot.manager.DataManager;
-import net.md_5.bungee.protocol.packet.Login;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.mindrot.jbcrypt.BCrypt;
-
-import java.io.ByteArrayOutputStream;
 
 /**
  * Created by Anastasia on 7/8/17.
