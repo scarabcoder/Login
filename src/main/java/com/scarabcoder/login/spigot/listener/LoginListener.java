@@ -2,6 +2,7 @@ package com.scarabcoder.login.spigot.listener;
 
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
+import com.scarabcoder.login.CachedPlayerData;
 import com.scarabcoder.login.spigot.LoginSpigot;
 import com.scarabcoder.login.spigot.manager.DataManager;
 import org.bukkit.ChatColor;
@@ -31,7 +32,12 @@ public class LoginListener implements Listener {
                 out.writeUTF(p.getUniqueId().toString());
 
                 p.sendPluginMessage(LoginSpigot.getPlugin(), "Login", out.toByteArray());
-                p.sendMessage(ChatColor.GREEN + "Checking login status...");
+
+                CachedPlayerData d = DataManager.getPlayerData(p.getUniqueId());
+                if(d.isPremiumAccount() && d.getHashedPassword() == null){
+                    p.sendMessage(ChatColor.RED + "You're account isn't secure - set a password with /register <password>.");
+                }
+
             }
         };
         r.runTaskLater(LoginSpigot.getPlugin(), 5);

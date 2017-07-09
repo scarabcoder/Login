@@ -15,9 +15,7 @@ public class LoginManager {
         users = new HashMap<UUID, Boolean>();
     }
 
-    public void registerNewUser(UUID uuid){
-        users.put(uuid, false);
-    }
+
 
     public void setLoggedIn(UUID id, boolean loggedIn){
         users.put(id, loggedIn);

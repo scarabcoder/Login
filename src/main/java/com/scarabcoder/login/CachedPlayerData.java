@@ -1,4 +1,4 @@
-package com.scarabcoder.login.spigot;
+package com.scarabcoder.login;
 
 import java.util.UUID;
 

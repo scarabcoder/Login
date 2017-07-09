@@ -1,5 +1,6 @@
 package com.scarabcoder.login.spigot;
 
+import com.scarabcoder.login.CachedPlayerData;
 import com.scarabcoder.login.MySQLManager;
 import com.scarabcoder.login.spigot.command.LoginCommand;
 import com.scarabcoder.login.spigot.command.RegisterCommand;
@@ -79,7 +80,7 @@ public class LoginSpigot extends JavaPlugin {
             subtitle = "/login <password>";
         }
 
-        p.sendTitle(ChatColor.RED + "Please Login to Play!", subtitle, 5, 60, 5);
+        p.sendTitle(ChatColor.RED + "Please Login to Play!", subtitle, 0, 60, 5);
 
     }
 

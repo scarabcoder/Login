@@ -1,7 +1,7 @@
 package com.scarabcoder.login.spigot.command;
 
 import com.scarabcoder.login.MySQLManager;
-import com.scarabcoder.login.spigot.CachedPlayerData;
+import com.scarabcoder.login.CachedPlayerData;
 import com.scarabcoder.login.spigot.manager.DataManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
