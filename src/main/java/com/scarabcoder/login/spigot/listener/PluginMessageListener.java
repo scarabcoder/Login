@@ -9,14 +9,13 @@ import java.io.IOException;
 import java.util.UUID;
 
 /**
- * Created by Anastasia on 7/8/17.
+ * Receive session data from the proxy plugin
  */
 public class PluginMessageListener implements org.bukkit.plugin.messaging.PluginMessageListener {
 
 
     @Override
     public void onPluginMessageReceived(String channel, Player player, byte[] bytes) {
-        System.out.print("Tesssst");
         if(!channel.equals("Login"))
             return;
 

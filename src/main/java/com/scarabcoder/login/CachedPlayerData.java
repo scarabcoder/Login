@@ -3,7 +3,7 @@ package com.scarabcoder.login;
 import java.util.UUID;
 
 /**
- * Created by Anastasia on 7/8/17.
+ * Simple data object for storing cached data from the database
  */
 public class CachedPlayerData {
 

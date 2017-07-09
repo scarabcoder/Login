@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 /**
- * Created by Anastasia on 7/8/17.
+ * Custom channel listeners, for setting and getting login sessions
  */
 public class PluginMessageListener implements Listener {
 
@@ -36,7 +36,12 @@ public class PluginMessageListener implements Listener {
 
 
             switch(sub){
+                //
+                //    Return whether or not a player has been logged in for that session
+                //    Should never return null
+                //
                 case "IsLoggedIn":
+
                     UUID user = UUID.fromString(in.readUTF());
                     Server server = ProxyServer.getInstance().getPlayer(user).getServer();
                     ByteArrayDataOutput out = ByteStreams.newDataOutput();
@@ -51,6 +56,9 @@ public class PluginMessageListener implements Listener {
 
 
                     break;
+                //
+                //    Set the logged in status for a player's network session
+                //
                 case "SetLoggedIn":
                     user = UUID.fromString(in.readUTF());
                     LoginBungeeCord.getLoginManager().setLoggedIn(user, in.readBoolean());

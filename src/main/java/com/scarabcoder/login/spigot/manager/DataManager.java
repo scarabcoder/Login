@@ -11,7 +11,8 @@ import java.util.HashMap;
 import java.util.UUID;
 
 /**
- * Created by Anastasia on 7/8/17.
+ * Store and refresh cached data from the database.
+ * Should only be used by other Spigot plugins, not proxy.
  */
 public class DataManager {
 

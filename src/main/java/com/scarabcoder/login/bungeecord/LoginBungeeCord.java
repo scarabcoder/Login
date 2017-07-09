@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 /**
- * Created by Anastasia on 7/8/17.
+ * The BungeeCord Login plugin
  */
 public class LoginBungeeCord extends Plugin {
 
@@ -26,6 +26,10 @@ public class LoginBungeeCord extends Plugin {
 
     public void onEnable(){
 
+
+        //
+        //    Generate the default config
+        //
         if(!this.getDataFolder().exists())
             this.getDataFolder().mkdir();
 
@@ -49,6 +53,10 @@ public class LoginBungeeCord extends Plugin {
             e.printStackTrace();
         }
 
+
+        //
+        //    Grab the MySQL database connection info from config
+        //
         String host = config.getString("mysql.host");
         String port = config.getString("mysql.port");
         String database = config.getString("mysql.database");

@@ -6,13 +6,16 @@ import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
 /**
- * Created by Anastasia on 7/8/17.
+ * Remove sessions
  */
 public class PlayerLogoutListener implements Listener {
 
+    //
+    //    Remove the session from memory, to prevent memory leaks.
+    //
     @EventHandler
     public void onLogout(PlayerDisconnectEvent e){
-        LoginBungeeCord.getLoginManager().setLoggedIn(e.getPlayer().getUniqueId(), false);
+        LoginBungeeCord.getLoginManager().removeEntry(e.getPlayer().getUniqueId());
     }
 
 }

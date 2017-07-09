@@ -13,11 +13,15 @@ import org.bukkit.entity.Player;
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
- * Created by Anastasia on 7/8/17.
+ * /login command for players
  */
 public class LoginCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
+
+        //
+        //    Will use BCrypt to compare pass argument with stored (hashed) password in the cached user info
+        //
 
         if(sender instanceof Player){
             Player p = (Player) sender;

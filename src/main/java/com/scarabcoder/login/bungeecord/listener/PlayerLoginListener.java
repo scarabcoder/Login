@@ -17,17 +17,19 @@ import java.sql.SQLException;
 import java.util.UUID;
 
 /**
- * Created by Anastasia on 7/8/17.
+ * Init and register player data
  */
 public class PlayerLoginListener implements Listener {
 
+
+    //
+    //    Handle the registration and initiation of offline-mode users.
+    //    PreLoginEvent only returns username (no UUID), and is the only time an internal UUID can be set.
+    //
     @EventHandler
     public void onPrePlayerLogin(PreLoginEvent e){
 
         CachedPlayerData data = null;
-
-        System.out.println(e.getConnection().isOnlineMode());
-        System.out.println(e.getConnection().getUniqueId());
 
         Connection c = MySQLManager.getConnection();
 
@@ -71,6 +73,11 @@ public class PlayerLoginListener implements Listener {
 
     }
 
+
+    //
+    //    Handle the registration and initiation for online-mode users.
+    //    Must be done as soon as the UUID is present (LoginEvent), and only for online mode players.
+    //
     @EventHandler
     public void playerLogin(LoginEvent e){
         if(e.getConnection().isOnlineMode()){
