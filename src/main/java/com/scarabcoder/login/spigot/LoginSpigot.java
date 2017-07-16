@@ -7,13 +7,18 @@ import com.scarabcoder.login.spigot.command.RegisterCommand;
 import com.scarabcoder.login.spigot.listener.*;
 import com.scarabcoder.login.spigot.manager.DataManager;
 import com.scarabcoder.login.spigot.manager.LoginManager;
+import net.minecraft.server.v1_8_R3.IChatBaseComponent;
+import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.SQLException;
+
+import static java.awt.SystemColor.text;
 
 /**
  * Main plugin class
@@ -87,7 +92,19 @@ public class LoginSpigot extends JavaPlugin {
             subtitle = "/login <password>";
         }
 
-        p.sendTitle(ChatColor.RED + "Please Login to Play!", subtitle, 0, 60, 5);
+        IChatBaseComponent chatTitle = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + "Please Login to Play!" + "\",color:" + ChatColor.GOLD.name().toLowerCase() + "}");
+        IChatBaseComponent subtitleText = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + subtitle + "\",color:" + ChatColor.WHITE.name().toLowerCase() + "}");
+
+        PacketPlayOutTitle title = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TITLE, chatTitle);
+        PacketPlayOutTitle subtitlePacket = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.SUBTITLE, subtitleText);
+        PacketPlayOutTitle length = new PacketPlayOutTitle(0, 60, 5);
+
+
+        ((CraftPlayer) p).getHandle().playerConnection.sendPacket(title);
+        ((CraftPlayer) p).getHandle().playerConnection.sendPacket(subtitlePacket);
+        ((CraftPlayer) p).getHandle().playerConnection.sendPacket(length);
+
+        //p.sendTitle(ChatColor.RED + "Please Login to Play!", subtitle, 0, 60, 5);
 
     }
 
