@@ -28,6 +28,8 @@ public class PlayerLoginListener implements Listener {
     //
     @EventHandler
     public void onPrePlayerLogin(PreLoginEvent e){
+        boolean isPremium = e.getConnection().isOnlineMode();
+
 
         CachedPlayerData data = null;
 
@@ -42,11 +44,10 @@ public class PlayerLoginListener implements Listener {
 
             if(st.next()){
                 data = new CachedPlayerData(UUID.fromString(st.getString("uuid")), st.getString("username"), st.getString("hashedPass"), st.getBoolean("premium"));
-                if(!e.getConnection().isOnlineMode())
-                    e.getConnection().setUniqueId(UUID.fromString(st.getString("uuid")));
+                if(!e.getConnection().isOnlineMode());
+                    //e.getConnection().setUniqueId(UUID.fromString(st.getString("uuid")));
             }else{
 
-                boolean isPremium = e.getConnection().isOnlineMode();
 
                 if(!isPremium) {
 
@@ -60,7 +61,7 @@ public class PlayerLoginListener implements Listener {
                     data = new CachedPlayerData(uuid, e.getConnection().getName(), null, isPremium);
 
                     ps.executeUpdate();
-                    e.getConnection().setUniqueId(uuid);
+                    //e.getConnection().setUniqueId(uuid);
                     LoginBungeeCord.getLoginManager().setLoggedIn(uuid, false);
                 }
             }
@@ -80,8 +81,10 @@ public class PlayerLoginListener implements Listener {
     //
     @EventHandler
     public void playerLogin(LoginEvent e){
+        System.out.println(e.getConnection().getUniqueId());
         if(e.getConnection().isOnlineMode()){
             Connection c = MySQLManager.getConnection();
+            LoginBungeeCord.getLoginManager().setLoggedIn(e.getConnection().getUniqueId(), false);
             try {
                 PreparedStatement ps = c.prepareStatement("SELECT * FROM users WHERE uuid=?");
                 ps.setString(1, e.getConnection().getUniqueId().toString());
@@ -93,11 +96,10 @@ public class PlayerLoginListener implements Listener {
                     ps.setString(2, e.getConnection().getName());
                     ps.setBoolean(3, true);
                     ps.executeUpdate();
-                    LoginBungeeCord.getLoginManager().setLoggedIn(e.getConnection().getUniqueId(), true);
 
                 }else{
-                    LoginBungeeCord.getLoginManager().setLoggedIn(e.getConnection().getUniqueId(), false);
-
+                    if(st.getString("hashedPass") == null)
+                         LoginBungeeCord.getLoginManager().setLoggedIn(e.getConnection().getUniqueId(), true);
                 }
 
             } catch (SQLException e1) {

@@ -22,8 +22,15 @@ public class LoginListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent e){
 
 
-        DataManager.refreshCache(e.getPlayer().getUniqueId());
+        LoginSpigot.getLoginManager().setLoggedIn(e.getPlayer().getUniqueId(), false);
         final Player p = e.getPlayer();
+        CachedPlayerData d = DataManager.getPlayerData(p.getUniqueId());
+        DataManager.refreshCache(e.getPlayer().getUniqueId());
+        if(d.isPremiumAccount() && d.getHashedPassword() == null){
+            p.sendMessage(ChatColor.RED + "Your account isn't secure - set a password with /register <password>.");
+            LoginSpigot.getLoginManager().setLoggedIn(p.getUniqueId(), true);
+
+        }
         BukkitRunnable r = new BukkitRunnable() {
             @Override
             public void run() {
@@ -33,17 +40,13 @@ public class LoginListener implements Listener {
 
                 p.sendPluginMessage(LoginSpigot.getPlugin(), "Login", out.toByteArray());
 
-                CachedPlayerData d = DataManager.getPlayerData(p.getUniqueId());
-                if(d.isPremiumAccount() && d.getHashedPassword() == null){
-                    p.sendMessage(ChatColor.RED + "You're account isn't secure - set a password with /register <password>.");
-                }
+
 
             }
         };
         r.runTaskLater(LoginSpigot.getPlugin(), 5);
 
 
-        LoginSpigot.getLoginManager().setLoggedIn(e.getPlayer().getUniqueId(), false);
 
     }
 

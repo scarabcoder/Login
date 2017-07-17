@@ -2,6 +2,7 @@ package com.scarabcoder.login.bungeecord;
 
 import com.scarabcoder.login.MySQLManager;
 import com.scarabcoder.login.bungeecord.listener.PlayerLoginListener;
+import com.scarabcoder.login.bungeecord.listener.PlayerLogoutListener;
 import com.scarabcoder.login.bungeecord.listener.PluginMessageListener;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
@@ -77,6 +78,7 @@ public class LoginBungeeCord extends Plugin {
         this.getProxy().registerChannel("Login");
         this.getProxy().getPluginManager().registerListener(this, new PluginMessageListener());
         this.getProxy().getPluginManager().registerListener(this, new PlayerLoginListener());
+        this.getProxy().getPluginManager().registerListener(this, new PlayerLogoutListener());
 
 
 

@@ -29,6 +29,7 @@ public class PluginMessageListener implements org.bukkit.plugin.messaging.Plugin
                     boolean isLoggedIn = in.readBoolean();
 
                     LoginSpigot.getLoginManager().setLoggedIn(user, isLoggedIn);
+                    System.out.println(isLoggedIn);
                     break;
             }
         } catch (IOException e) {

@@ -26,14 +26,17 @@ public class DataManager {
         Connection c = MySQLManager.getConnection();
 
         try {
+            System.out.println(id.toString());
             PreparedStatement ps = c.prepareStatement("SELECT * FROM users WHERE uuid=?");
             ps.setString(1, id.toString());
 
             ResultSet st = ps.executeQuery();
+            System.out.println(st.getFetchSize());
 
             if(st.next()){
                 CachedPlayerData data = new CachedPlayerData(id, st.getString("username"), st.getString("hashedPass"), st.getBoolean("premium"));
                 pData.put(id, data);
+                System.out.println("Grabbed cached data for UUID " + id.toString() + ".");
             }
 
         } catch (SQLException e) {

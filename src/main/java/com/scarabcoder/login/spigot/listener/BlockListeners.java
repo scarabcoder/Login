@@ -35,7 +35,7 @@ public class BlockListeners implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e){
         if(!LoginSpigot.getLoginManager().isLoggedIn(e.getPlayer().getUniqueId())){
-            e.setCancelled(true);
+            e.getPlayer().teleport(e.getFrom());
             LoginSpigot.sendLoginNotification(e.getPlayer());
         }
     }

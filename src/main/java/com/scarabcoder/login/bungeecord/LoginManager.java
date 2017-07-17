@@ -22,7 +22,7 @@ public class LoginManager {
     }
 
     public boolean isLoggedIn(UUID id){
-        return users.get(id);
+        return users.containsKey(id) ? users.get(id) : false;
     }
 
     public void removeEntry(UUID id){

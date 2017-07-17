@@ -43,15 +43,17 @@ public class PluginMessageListener implements Listener {
                 case "IsLoggedIn":
 
                     UUID user = UUID.fromString(in.readUTF());
-                    Server server = ProxyServer.getInstance().getPlayer(user).getServer();
-                    ByteArrayDataOutput out = ByteStreams.newDataOutput();
+                    for(String info : ProxyServer.getInstance().getServers().keySet()){
+                        ServerInfo i = ProxyServer.getInstance().getServerInfo(info);
+                        ByteArrayDataOutput out = ByteStreams.newDataOutput();
 
-                    out.writeUTF("IsLoggedIn");
-                    out.writeUTF(user.toString());
+                        out.writeUTF("IsLoggedIn");
+                        out.writeUTF(user.toString());
 
-                    out.writeBoolean(LoginBungeeCord.getLoginManager().isLoggedIn(user));
+                        out.writeBoolean(LoginBungeeCord.getLoginManager().isLoggedIn(user));
 
-                    server.sendData("Login", out.toByteArray());
+                        i.sendData("Login", out.toByteArray());
+                    }
 
 
 
